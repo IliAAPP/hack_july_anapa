@@ -1,0 +1,73 @@
+@startuml
+
+left to right direction
+' Дефинируем акторов
+actor "Местные" as locals
+actor "Бизнес" as business
+actor "Жители" as residents
+actor "Туристы" as tourists
+
+' Иерархия акторов
+locals <|-- business
+locals <|-- residents
+
+' Дефинируем пустые use case
+usecase "Автоматизировать документооборот" as UC1
+usecase "Прорекламировать бизнес для привлечения клиентов" as UC2
+usecase "Провести анализ местности\n для выбора места для бизнеса" as UC3
+usecase "Выбрать место для застройки" as UC4
+usecase "Выбрать коммерческое помещение" as UC5
+usecase "Автоматизировать процесс\n уплаты налога" as UC6
+usecase "Упростить проверку документации" as UC7
+
+usecase "Сдать жилье в аренду" as UC8
+usecase "Получить информацию\n о мероприятиях города" as UC9
+usecase "Получить проверенного жильца" as UC10
+usecase "Получить кэшбэк за\n легализацию бизнеса" as UC11
+usecase "Получить информацию\n о деятельности местных организаций" as UC12
+usecase "Получить информацию\n о временных событиях" as UC13
+
+usecase "Компенсировать часть затрат" as UC14
+usecase "Получить бонусы за достижения" as UC15
+usecase "Получить скидку за\n повышение уровня лояльности" as UC16
+usecase "Получить кэшбек с покупок" as UC17
+usecase "Забронировать жилье" as UC18
+usecase "Отправиться в тур/поездку" as UC19
+usecase "Найти подходящий\n санаторий/пляж" as UC20
+
+' Связываем акторов с use case
+business -- UC1
+business -- UC2
+business -- UC3
+
+residents -- UC8
+residents -- UC9
+
+tourists -- UC9
+tourists -- UC14
+tourists -- UC18
+tourists -- UC19
+tourists -- UC20
+
+
+' Связываем use case extends
+UC3 <.. UC4 : extends
+UC3 <.. UC5 : extends
+
+UC1 <.. UC6 : extends
+UC1 <.. UC7 : extends
+
+UC8 <.. UC10 : include
+UC8 <.. UC11 : extends
+
+UC9 <.. UC12 : extends
+UC9 <.. UC13 : extends
+
+UC14 <.. UC15 : extends
+UC14 <.. UC16 : extends
+UC14 <.. UC17 : extends
+
+
+
+
+@enduml
